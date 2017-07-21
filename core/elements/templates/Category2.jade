@@ -1,0 +1,36 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+
+section.b-content.b-category
+    header.b-category__header(style="background-image: url('[[+ms2g.1.url]]');")
+        .l-container
+            h1.b-category__title {$_modx->resource.pagetitle}
+
+    .l-container
+        nav.b-category__nav.
+            {$_modx->runSnippet('pdoMenu',[
+            'parents' => $_modx->resource.id,
+            'level' => 1,
+            'tpl' => '@INLINE <li class="b-category__item"><a href="/{$uri}" class="b-category__link">{$pagetitle}</a>[[+wrapper]]</li>',
+            'tplOuter' => '@INLINE <ul class="b-category__list">[[+wrapper]]</ul>'])}
+
+
+        | {$_modx->runSnippet('ms2GalleryResources',[
+        | 'parents' => $_modx->resource.id,
+        | 'tpl' => '@FILE chunks/category/CategoryCard.html',
+        | 'depth' => 0,
+        | 'limit' => 20,
+        | 'sortby' => 'menuindex',
+        | 'includeContent' => 1,
+        | 'includeThumbs' => '138x165',
+        | 'sortdir' => 'ASC'])}
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+|{/block}
+
+
+

@@ -1,0 +1,60 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content">
+  <div class="l-container">
+    {$_modx->runSnippet('pdoCrumbs',[
+    'from' => $_modx->resource.id,
+    'tpl' => '@INLINE <li class="b-breadcrumbs__item"><a href="/[[+link]]" class="b-breadcrumbs__link">[[+pagetitle]]</a></li>',
+    'tplWrapper' => '@INLINE <ul class="b-breadcrumbs">[[+output]]</ul>',
+    'showCurrent' => 0 ])}
+    <section class="b-product js-product">
+      <header class="b-product__header">
+        <div class="b-product__header-inner">
+          <h1 class="b-product__title">{$_modx->resource.longtitle}</h1><a href="/[[~[[+vendor.resource]]]]"><span class="b-product__logo-field"><img src="/[[+vendor.logo]]" alt="" class="b-product__logo"/></span></a>
+        </div>
+      </header>
+      <aside class="b-product__aside">
+        <div class="b-product__gallery js-product-gallery-block">
+          {$_modx->runSnippet('!msGallery')}
+          
+        </div>
+      </aside>
+      <section class="b-product__content">
+        <section class="b-product__section b-product__section_docs">
+          <h3 class="b-product__section-title">Технические документы</h3>
+          <ul class="b-files-list">
+            {$_modx->runSnippet('FileAttach',[
+              'makeUrl' => 'true',
+              'showSize' => 'true'
+              'tpl' => 'DocItem'])}
+          </ul>
+        </section>
+        <section class="b-product__btn-field">
+          <input type="hidden" name="p-name" value="{$_modx->resource.longtitle}"/>
+          <input type="hidden" name="p-id" value="{$_modx->resource.id}"/>
+          <input type="hidden" name="p-img" value="[[+thumb]]"/>
+          <input type="hidden" name="p-url" value="[[~[[++site_start]]]]{$_modx->resource.id | url}"/>
+          <button type="button" class="b-product__btn g-btn g-btn_large js-product-btn">Оставить заявку</button>
+        </section>
+        <section class="b-product__section b-product__section_specifications">
+          <h3 class="b-product__section-title">Характеристики</h3>
+          <ul class="b-info-list">
+            {$_modx->runSnippet('msProductOptions',[
+            'tpl' => '@FILE chunks/Product/ProductOptions.html'])}
+          </ul>
+        </section>
+        <section class="b-product__section b-product__section_description">
+          <h3 class="b-product__section-title">Описание</h3>
+          <div class="b-product__description js-product-description">
+            <div class="b-product__description-mian readmore">
+            {$_modx->resource.content}
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

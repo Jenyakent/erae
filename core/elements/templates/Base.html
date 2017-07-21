@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    {block 'head'}
+    {include 'file:chunks/general/head.html'}
+    {/block}
+    
+  </head>
+  <body>
+    {block 'header'}
+    {include 'file:chunks/general/header.html'}
+    {/block}
+    {block 'content'}
+    {$_modx->resource.content}
+    {/block}
+    {block 'footer'}
+    {include 'file:chunks/general/footer.html'}
+    {/block}
+  </body><!-- Render time: [^t^] -->
+</html>

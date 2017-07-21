@@ -1,0 +1,109 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+section.b-slider.js-slider.
+    {$_modx->runSnippet('!ms2GalleryResources',[
+    'parents' => 8,
+    'includeThumbs' => '1920x547',
+    'includeContent' => 1,
+    'tpl' => '@FILE chunks/main/slide.html',
+    'sortby' => 'menuindex',
+    'sortdir' => 'ASC'])}
+
+section.b-content
+  .l-container
+      section.b-equipment
+         h2.b-page-title.g-align-center Предлагаемое оборудование
+         .b-equipment__main-list.
+             {$_modx->runSnippet('pdoResources',[
+             'depth' => 0,
+             'parents' => 2,
+             'limit' => 4,
+             'tpl' => '@FILE chunks/main/CategoryCard.html',
+             'sortby' => 'menuindex',
+             'sortdir' => 'ASC'])}
+         .b-equipment__list.
+              {$_modx->runSnippet('pdoResources',[
+              'depth' => 0,
+              'parents' => 2,
+              'offset' => 4,
+              'limit' => 6,
+              'tpl' => '@FILE chunks/main/CategoryCard2.html',
+              'sortby' => 'menuindex',
+              'sortdir' => 'ASC'])}
+
+
+      section.b-brands
+          h2.b-page-title.g-align-center Наши партнеры
+          .b-brands__list.
+              {$_modx->runSnippet('pdoResources',[
+                           'class' => 'msVendor',
+                           'tpl' => '@FILE chunks/main/BrandCart.html',
+                           'sortby' => 'name',
+                           'limit' => 30,
+                           'sortdir' => 'ASC'])}
+
+
+
+
+      section.b-benefits
+          h2.b-page-title.g-align-center Наши преимущества
+          .b-benefits__list
+              .b-benefits__item
+                  .b-benefits__item-img-wrapper
+                      img(src='/assets/images/icons/benefits-icon-1.png' alt='').b-benefits__item-img
+                  .b-benefits__item-title Собственный склад в&nbsp;100&nbsp;метрах от&nbsp;офиса
+              .b-benefits__item
+                  .b-benefits__item-img-wrapper
+                      img(src='/assets/images/icons/benefits-icon-2.png' alt='').b-benefits__item-img
+                  .b-benefits__item-title С клиентами работают инженеры с&nbsp;опытом от&nbsp;10&nbsp;лет
+              .b-benefits__item
+                  .b-benefits__item-img-wrapper
+                      img(src='/assets/images/icons/benefits-icon-3.png' alt='').b-benefits__item-img
+                  .b-benefits__item-title Эксклюзивные поставщики ADCA, Becker, BRAY, EMC
+
+section.b-reviews.js-reviews#pdopage
+  .l-container
+      h2.b-reviews__title Наши партнеры о&nbsp;работе с&nbsp;нами
+      .b-reviews__inner
+          .b-reviews__content.
+              {$_modx->runSnippet('!ms2GalleryResources',[
+              'parents' => 9,
+              'includeThumbs' => '234x334',
+              'includeOriginal' => 1,
+              'includeContent' => 1,
+              'tpl' => '@FILE chunks/reviewCard.html',
+              'sortby' => 'menuindex',
+              'sortdir' => 'ASC'])}
+
+          .b-reviews__aside
+              .b-reviews__aside-inner
+                      | <nav class="b-reviews__nav">
+                      |     <ul class="b-reviews__nav-list rows" >
+                      |         [[!pdoPage?
+                      |             &parents=`9`
+                      |             &sortby=`menuindex`
+                      |             &sortdir=`ASC`
+                      |             &tplFirst=`@INLINE <li class="b-reviews__nav-item"><a href="#" class="b-reviews__nav-link is-active js-reviews-link" data-review-id="[[+id]]">[[+longtitle]]</a></li>`
+                      |             &tpl=`@INLINE <li class="b-reviews__nav-item"><a href="#" class="b-reviews__nav-link js-reviews-link" data-review-id="[[+id]]">[[+longtitle]]</a></li>`
+                      |             &limit=`5`
+                      |             &ajaxMode=`default`
+                      |             &tplPageWrapper=`@INLINE <div class="pagination"><ul class="pagination">[[+next]]</ul></div>`
+                      |             &tplPageNext=`@INLINE <a class="b-reviews__more-btn" href="/[[+href]]"><span class="b-reviews__more-btn-text">Еще отзывы</span></a>`
+                      |             &tplPageNextEmpty=`@INLINE <a class="b-reviews__more-btn last" href="/[[+href]]"><span class="b-reviews__more-btn-text">Еще отзывы</span></a>`
+                      |         ]]
+                      |     </ul>
+                      |     [[!+page.nav]]
+                      | </nav>
+
+
+
+
+
+
+|{if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        |{$_modx->resource.Seo_info}
+
+|{/if}
+|{/block}
+

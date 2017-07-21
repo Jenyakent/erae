@@ -1,0 +1,12 @@
+
+{$_modx->runSnippet('!AjaxForm',[
+'snippet' => 'FormIt',
+'form' => '@FILE chunks/Modal/ModalRequestForm.html',
+'hooks' => 'spam,email',
+'emailTo' => $_modx->config.email,
+'emailCC' => 'messages@axora.by',
+'emailFrom' => 'admin@s8879.h6.modhost.pro',
+'emailSubject' => 'Запрос с ERAE',
+'emailTpl' => 'SentTpl',
+'validate' => 'phone:required:isNumber,workemail:blank',
+'successMessage' => 'Ваше сообщение успешно отправлено!'])}

@@ -1,0 +1,60 @@
+footer.b-footer
+    .l-container
+        .b-footer__inner
+            nav.b-footer__nav
+                .b-footer__nav-inner
+                    .b-footer__nav-col-1
+                        .b-footer__nav-title
+                            a(href='/[[#2.uri]]').b-footer__nav-link [[#2.menutitle]]
+
+                        |{$_modx->runSnippet('pdoMenu@footermenu',[
+                        |'parents' => 2,
+                        |'limit' => 5])}
+                        |{$_modx->runSnippet('pdoMenu@footermenu',[
+                        |'parents' => 2,
+                        |'offset' => 5,
+                        |'limit' => 5])}
+
+                    .b-footer__nav-col-2.
+                        {$_modx->runSnippet('!pdoResources',[
+                        'parents' => 0,
+                        'resources' => '4,5,6',
+                        'tpl' => '@INLINE <div class="b-footer__nav-title"><a href="/{$uri}" class="b-footer__nav-link">{$pagetitle}</a></div>',
+                        'sortby' => 'menuindex',
+                        'sortdir' => 'ASC'])}
+
+            .b-footer__right
+                .b-footer__dev
+                    a(href="https://axora.by/").b-dev
+                        img(src="/assets/images/site/axora.png" alt="").b-dev__img
+                        span.b-dev__title Разработка сайта
+                .b-footer__info ООО «ЭРА ИНЖИНИРИНГ»<br> Трубопроводная арматура,<br> насосы, КИП и комплектующие
+
+
+
+|{include 'file:chunks/Modal/ModalRequest.html'}
+|{include 'file:chunks/Modal/ModalCall.html'}
+
+|{if $_modx->resource.template == 6}
+|{include 'file:chunks/Modal/ModalOrder.html'}
+|{/if}
+
+.g-xs-visible.js-xs-test
+.g-sm-visible.js-sm-test
+.g-md-visible.js-md-test
+.g-lg-visible.js-lg-test
+
+script(src="/assets/lib/jquery.fancybox/jquery.fancybox.pack.js" type="text/javascript")
+script(src="/assets/lib/jquery.slick/slick.min.js" type="text/javascript")
+script(src="/assets/lib/jquery.sticky-kit/jquery.sticky-kit.min.js" type="text/javascript")
+script(src="/assets/lib/jquery.validate/jquery.validate.min.js" type="text/javascript")
+script(src="/assets/js/scripts.js" type="text/javascript")
+script(src="/assets/js/test.js" type="text/javascript")
+|{if $_modx->resource.template == 6}
+script(src="/assets/js/readmore.js" type='text/javascript')
+script(src="/assets/js/read.js" type='text/javascript')
+|{/if}
+
+
+
+

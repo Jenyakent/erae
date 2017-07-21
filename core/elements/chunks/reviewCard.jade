@@ -1,0 +1,8 @@
+.b-reviews__item.b-review.js-reviews-item(data-review-id="{$id}")
+    .b-review__img-wrapper
+        a(href="{$_pls[\'234x334.original\']}").js-fancy-link
+            img(src='{$_pls[\'234x334\']}' alt="").b-review__img
+    .b-review__content
+        .b-review__text {$content}
+        .b-review__date [[+publishedon:date=`%d.%m.%Y`]]
+        .b-review__author {$introtext}

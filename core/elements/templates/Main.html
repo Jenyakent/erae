@@ -1,0 +1,114 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-slider js-slider">
+  {$_modx->runSnippet('!ms2GalleryResources',[
+  'parents' => 8,
+  'includeThumbs' => '1920x547',
+  'includeContent' => 1,
+  'tpl' => '@FILE chunks/main/slide.html',
+  'sortby' => 'menuindex',
+  'sortdir' => 'ASC'])}
+  
+</section>
+<section class="b-content">
+  <div class="l-container">
+    <section class="b-equipment">
+      <h2 class="b-page-title g-align-center">Предлагаемое оборудование</h2>
+      <div class="b-equipment__main-list">
+        {$_modx->runSnippet('pdoResources',[
+        'depth' => 0,
+        'parents' => 2,
+        'limit' => 4,
+        'tpl' => '@FILE chunks/main/CategoryCard.html',
+        'sortby' => 'menuindex',
+        'sortdir' => 'ASC'])}
+      </div>
+      <div class="b-equipment__list">
+        {$_modx->runSnippet('pdoResources',[
+        'depth' => 0,
+        'parents' => 2,
+        'offset' => 4,
+        'limit' => 6,
+        'tpl' => '@FILE chunks/main/CategoryCard2.html',
+        'sortby' => 'menuindex',
+        'sortdir' => 'ASC'])}
+        
+        
+      </div>
+    </section>
+    <section class="b-brands">
+      <h2 class="b-page-title g-align-center">Наши партнеры</h2>
+      <div class="b-brands__list">
+        {$_modx->runSnippet('pdoResources',[
+                     'class' => 'msVendor',
+                     'tpl' => '@FILE chunks/main/BrandCart.html',
+                     'sortby' => 'name',
+                     'limit' => 30,
+                     'sortdir' => 'ASC'])}
+        
+        
+        
+        
+      </div>
+    </section>
+    <section class="b-benefits">
+      <h2 class="b-page-title g-align-center">Наши преимущества</h2>
+      <div class="b-benefits__list">
+        <div class="b-benefits__item">
+          <div class="b-benefits__item-img-wrapper"><img src="/assets/images/icons/benefits-icon-1.png" alt="" class="b-benefits__item-img"/></div>
+          <div class="b-benefits__item-title">Собственный склад в&nbsp;100&nbsp;метрах от&nbsp;офиса</div>
+        </div>
+        <div class="b-benefits__item">
+          <div class="b-benefits__item-img-wrapper"><img src="/assets/images/icons/benefits-icon-2.png" alt="" class="b-benefits__item-img"/></div>
+          <div class="b-benefits__item-title">С клиентами работают инженеры с&nbsp;опытом от&nbsp;10&nbsp;лет</div>
+        </div>
+        <div class="b-benefits__item">
+          <div class="b-benefits__item-img-wrapper"><img src="/assets/images/icons/benefits-icon-3.png" alt="" class="b-benefits__item-img"/></div>
+          <div class="b-benefits__item-title">Эксклюзивные поставщики ADCA, Becker, BRAY, EMC</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<section id="pdopage" class="b-reviews js-reviews">
+  <div class="l-container">
+    <h2 class="b-reviews__title">Наши партнеры о&nbsp;работе с&nbsp;нами</h2>
+    <div class="b-reviews__inner">
+      <div class="b-reviews__content">
+        {$_modx->runSnippet('!ms2GalleryResources',[
+        'parents' => 9,
+        'includeThumbs' => '234x334',
+        'includeOriginal' => 1,
+        'includeContent' => 1,
+        'tpl' => '@FILE chunks/reviewCard.html',
+        'sortby' => 'menuindex',
+        'sortdir' => 'ASC'])}
+        
+      </div>
+      <div class="b-reviews__aside">
+        <div class="b-reviews__aside-inner">
+          <nav class="b-reviews__nav">
+              <ul class="b-reviews__nav-list rows" >
+                  [[!pdoPage?
+                      &parents=`9`
+                      &sortby=`menuindex`
+                      &sortdir=`ASC`
+                      &tplFirst=`@INLINE <li class="b-reviews__nav-item"><a href="#" class="b-reviews__nav-link is-active js-reviews-link" data-review-id="[[+id]]">[[+longtitle]]</a></li>`
+                      &tpl=`@INLINE <li class="b-reviews__nav-item"><a href="#" class="b-reviews__nav-link js-reviews-link" data-review-id="[[+id]]">[[+longtitle]]</a></li>`
+                      &limit=`5`
+                      &ajaxMode=`default`
+                      &tplPageWrapper=`@INLINE <div class="pagination"><ul class="pagination">[[+next]]</ul></div>`
+                      &tplPageNext=`@INLINE <a class="b-reviews__more-btn" href="/[[+href]]"><span class="b-reviews__more-btn-text">Еще отзывы</span></a>`
+                      &tplPageNextEmpty=`@INLINE <a class="b-reviews__more-btn last" href="/[[+href]]"><span class="b-reviews__more-btn-text">Еще отзывы</span></a>`
+                  ]]
+              </ul>
+              [[!+page.nav]]
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

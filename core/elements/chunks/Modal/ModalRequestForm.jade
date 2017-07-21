@@ -1,0 +1,13 @@
+.b-popup-window#request-window
+    .b-popup-window__content
+        .b-popup-window__title Заявка
+        form.js-validation-form
+            .g-form-row
+                input(type="text" name="workemail" style="display:none;" value="")
+                label.g-form-label Введите ваш телефон
+                input(type='tel',name="phone" placeholder="+ 375 29 890-90-90" required)
+            .g-form-row
+                label.g-form-label И оставьте сообщение
+                textarea(name="message" placeholder="Есть котел, который употребляет 5 тон в час, нужен клапан который будет регулировать расход. Владимир")
+            .g-form-btn-row
+                button(type='submit').g-btn.g-btn_large Отправить

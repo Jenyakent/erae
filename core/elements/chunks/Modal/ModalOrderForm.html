@@ -1,0 +1,30 @@
+
+<div id="product-window" class="b-popup-window b-product-window">
+  <div class="b-product-window__aside">
+    <div class="b-product-window__image-wrapper"><a href="/{$_modx->resource.uri}"><img src="[[+thumb]]" alt="" class="b-product-window__image"/></a></div>
+    <h4 class="b-product-window__title"><a href="/{$_modx->resource.uri}" class="b-product-window__title-link">{$_modx->resource.pagetitle}</a></h4>
+    <div class="b-product-window__description">
+      <p>{$_modx->runSnippet('pdoField',['field' => 'pagetitle', 'top' => 1])}</p>
+    </div>
+  </div>
+  <div class="b-popup-window__content b-product-window__content">
+    <div class="b-popup-window__title">Заявка</div>
+    <form action="/[[~[[*id]]]]" method="post" class="js-validation-form">
+      <input type="text" name="workemail" style="display:none;" value=""/>
+      <input type="hidden" name="p-name" value="{$_modx->resource.longtitle}"/>
+      <input type="hidden" name="p-id" value="{$_modx->resource.id}"/>
+      <input type="hidden" name="p-url" value="[[~[[++site_start]]]]{$_modx->resource.id | url}"/>
+      <div class="g-form-row">
+        <label class="g-form-label">Введите ваш телефон</label>
+        <input type="tel" name="phone" placeholder="+ 375 29 890-90-90" required="required"/>
+      </div>
+      <div class="g-form-row">
+        <label class="g-form-label">И оставьте сообщение</label>
+        <textarea name="message" placeholder="Есть котел, который употребляет 5 тон в час, нужен клапан который будет регулировать расход. Владимир"></textarea>
+      </div>
+      <div class="g-form-btn-row">
+        <button type="submit" class="g-btn g-btn_large">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.b-popup-window#order-call-window
+    .b-popup-window__content
+        .b-popup-window__title Звонок
+        form.js-validation-form
+            .g-form-row
+                input(type="text" name="workemail" style="display:none;" value="")
+                label.g-form-label Напишите телефон
+                input(type='tel',name="phone", placeholder="+ 375 29 890-90-90" required)
+            .g-form-row
+                label.g-form-label Из какой вы организации
+                input(type='text',name="organization" placeholder="Минский завод подшипников")
+            .g-form-btn-row
+                button(type='submit').g-btn.g-btn_large Заказать
+                .g-form-btn-row__message Мы перезвоним, ответим на вопросы,<br> поможем с выбором детали
+

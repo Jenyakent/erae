@@ -1,0 +1,36 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content">
+  <div class="l-container">
+    <!--breadcrumbs-->
+    <ul class="b-breadcrumbs">
+      <li class="b-breadcrumbs__item"><a href="/{$_modx->makeUrl(2)}" class="b-breadcrumbs__link">[[#2.pagetitle]]</a></li>
+      <li class="b-breadcrumbs__item"><a href="/katalog#brands" class="b-breadcrumbs__link">[[#3.pagetitle]]</a></li>
+      <li class="b-breadcrumbs__item">[[#45.menutitle]]</li>
+    </ul>
+    <div class="b-catalog">
+      {$_modx->runSnippet('!mFilter2',[
+                 'limit' => 20,
+                 'parents' => 2,
+                 'paginator' => 'pdoPage',
+                 'element' => 'msProducts',
+                 'includeThumbs' => 'small',
+                 'tpl' => '@FILE chunks/category/ProductCard.html',
+                 'pageLimit' => 5,
+                 'filters' => 'parent:categories,ms|vendor:vendors',
+                 'suggestions' => 0,
+                 'tplPage' => '@INLINE <li class="b-pagination__item"><a href="/[[+href]]" class="b-pagination__link">[[+pageNo]]</a></li>',
+                 'tplPageWrapper' => '@INLINE <div class="b-pagination">[[+prev]]<ul class="b-pagination__list">[[+pages]]</ul>[[+next]]</div>',
+                 'tplPagePrev' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_prev"><a href="/[[+href]]" class="b-pagination__arrow-link b-pagination__arrow-link_prev">Назад</a></div>',
+                 'tplPageNext' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_next"><a href="/[[+href]]" class="b-pagination__arrow-link b-pagination__arrow-link_next">Дальше</a></div>',
+                 'tplPageActive' => '@INLINE <li class="b-pagination__item "><a href="/[[+href]]" class="b-pagination__link is-active">[[+pageNo]]</a></li>',
+                 'tplPageSkip' => '@INLINE <li class="b-pagination__item"><span class="b-pagination__dott">...</span></li>',
+                 'tplPagePrevEmpty' => '',
+                 'tplPageNextEmpty' => ''])}
+      
+    </div>
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

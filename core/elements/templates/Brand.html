@@ -1,0 +1,18 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content">
+  <div class="l-container">
+    <!--breadcrumbs-->
+    <ul class="b-breadcrumbs">
+      <li class="b-breadcrumbs__item"><a href="/{$_modx->makeUrl(2)}" class="b-breadcrumbs__link">[[#2.pagetitle]]</a></li>
+      <li class="b-breadcrumbs__item"><a href="/katalog#brands" class="b-breadcrumbs__link">[[#3.pagetitle]]</a></li>
+    </ul>{$_modx->runSnippet('!pdoResources',[
+                 'class' => 'msVendor',
+                 'tpl' => '@FILE chunks/Brands/BrandPage.html',
+                 'where' => '{"resource" : '~ $_modx->resource.id ~'}',
+                 'sortby' => 'name'])}
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

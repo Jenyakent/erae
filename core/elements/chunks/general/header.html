@@ -1,0 +1,41 @@
+
+<header class="b-header">
+  <div class="b-header__top">
+    <div class="l-container">
+      <div class="b-header__top-inner">
+        <div class="b-header__phone">
+          <div class="b-phone"><a href="tel:{$_modx->config.phone}" class="b-phone__num">{$_modx->config.phone}</a><span class="b-phone__label">многоканальный</span></div>
+        </div>
+        <div class="b-header__control">
+          <div class="b-header__control-item b-header__control-item_request"><a href="#request-window" class="b-header__control-btn b-request-btn g-btn g-btn_small g-btn_white js-popup-link">Оставить заявку</a></div>
+          <div class="b-header__control-item b-header__control-item_call"><a href="#order-call-window" class="b-header__control-btn b-order-call-btn g-btn g-btn_small js-popup-link">Заказать звонок</a></div>
+          <div class="b-header__control-item b-header__control-item_search">
+            <button type="button" class="b-header__control-btn b-search-target-btn js-header-search-target"></button>
+          </div>
+          <div class="b-header__control-item b-header__control-item_menu">
+            <button type="button" class="b-header__control-btn b-menu-target-btn js-header-nav-target"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="b-header__content">
+    <div class="l-container">
+      <div class="b-header__content-inner">
+        <div class="b-header__logo"><a href="/" class="b-logo"><img src="/assets/images/site/logo.png" alt="" class="b-logo__img"/></a></div>
+        <div class="b-header__nav js-header-nav">
+          <div class="b-header__nav-phone"><a href="tel:{$_modx->config.phone}" class="b-header__nav-phone-num">{$_modx->config.phone}</a></div>
+          <nav class="b-nav">{$_modx->runSnippet('pdoMenu@headerMenu')}</nav>
+          <button type="button" class="b-header__nav-close js-header-nav-close"></button>
+        </div>
+        <div class="b-header__search js-header-search">
+          <div class="b-search js-search">
+            <div class="b-search__content">{$_modx->runSnippet('!mSearchForm')}</div>
+            <div class="new"></div>
+          </div>
+          <button type="button" class="b-header__search-close js-header-search-close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

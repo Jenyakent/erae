@@ -1,0 +1,49 @@
+
+<footer class="b-footer">
+  <div class="l-container">
+    <div class="b-footer__inner">
+      <nav class="b-footer__nav">
+        <div class="b-footer__nav-inner">
+          <div class="b-footer__nav-col-1">
+            <div class="b-footer__nav-title"><a href="/[[#2.uri]]" class="b-footer__nav-link">[[#2.menutitle]]</a></div>{$_modx->runSnippet('pdoMenu@footermenu',[
+            'parents' => 2,
+            'limit' => 5])}
+            {$_modx->runSnippet('pdoMenu@footermenu',[
+            'parents' => 2,
+            'offset' => 5,
+            'limit' => 5])}
+          </div>
+          <div class="b-footer__nav-col-2">
+            {$_modx->runSnippet('!pdoResources',[
+            'parents' => 0,
+            'resources' => '4,5,6',
+            'tpl' => '@INLINE <div class="b-footer__nav-title"><a href="/{$uri}" class="b-footer__nav-link">{$pagetitle}</a></div>',
+            'sortby' => 'menuindex',
+            'sortdir' => 'ASC'])}
+            
+          </div>
+        </div>
+      </nav>
+      <div class="b-footer__right">
+        <div class="b-footer__dev"><a href="https://axora.by/" class="b-dev"><img src="/assets/images/site/axora.png" alt="" class="b-dev__img"/><span class="b-dev__title">Разработка сайта</span></a></div>
+        <div class="b-footer__info">ООО «ЭРА ИНЖИНИРИНГ»<br> Трубопроводная арматура,<br> насосы, КИП и комплектующие</div>
+      </div>
+    </div>
+  </div>
+</footer>{include 'file:chunks/Modal/ModalRequest.html'}
+{include 'file:chunks/Modal/ModalCall.html'}
+{if $_modx->resource.template == 6}
+{include 'file:chunks/Modal/ModalOrder.html'}
+{/if}
+<div class="g-xs-visible js-xs-test"></div>
+<div class="g-sm-visible js-sm-test"></div>
+<div class="g-md-visible js-md-test"></div>
+<div class="g-lg-visible js-lg-test"></div>
+<script src="/assets/lib/jquery.fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="/assets/lib/jquery.slick/slick.min.js" type="text/javascript"></script>
+<script src="/assets/lib/jquery.sticky-kit/jquery.sticky-kit.min.js" type="text/javascript"></script>
+<script src="/assets/lib/jquery.validate/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/assets/js/scripts.js" type="text/javascript"></script>
+<script src="/assets/js/test.js" type="text/javascript"></script>{if $_modx->resource.template == 6}
+<script src="/assets/js/readmore.js" type="text/javascript"></script>
+<script src="/assets/js/read.js" type="text/javascript"></script>{/if}

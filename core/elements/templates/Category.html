@@ -1,0 +1,31 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content b-category">
+  <header style="background-image: url('[[+ms2g.0.url]]');" class="b-category__header">
+    <div class="l-container">
+      <h1 class="b-category__title">{$_modx->resource.pagetitle}</h1>
+    </div>
+  </header>
+  <div class="l-container">
+    <nav class="b-category__nav">
+      {$_modx->runSnippet('pdoMenu',[
+      'parents' => $_modx->resource.id,
+      'level' => 1,
+      'tpl' => '@INLINE <li class="b-category__item"><a href="/{$uri}" class="b-category__link">{$pagetitle}</a>[[+wrapper]]</li>',
+      'tplOuter' => '@INLINE <ul class="b-category__list">[[+wrapper]]</ul>'])}
+      
+      
+    </nav>{$_modx->runSnippet('ms2GalleryResources',[
+    'parents' => $_modx->resource.id,
+    'tpl' => '@FILE chunks/category/CategoryCard.html',
+    'depth' => 0,
+    'limit' => 20,
+    'sortby' => 'menuindex',
+    'includeContent' => 1,
+    'includeThumbs' => '138x165',
+    'sortdir' => 'ASC'])}
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

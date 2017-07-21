@@ -1,0 +1,34 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content">
+  <div class="l-container">
+    <h1 class="b-page-title">{$_modx->resource.pagetitle}</h1>
+    <section class="b-contacts">
+      <div class="b-contacts__aside">
+        <dl class="b-contacts__data">
+          <dt class="b-contacts__data-title">Телефоны</dt>
+          <dd class="b-contacts__data-description"><a href="tel:{$_modx->config.phone}">{$_modx->config.phone} <br> многоканальный</a></dd>
+          <dt class="b-contacts__data-title">Адрес</dt>
+          <dd class="b-contacts__data-description">{$_modx->config.adress}</dd>
+          <dt class="b-contacts__data-title">Почта</dt>
+          <dd class="b-contacts__data-description"><a href="mailto:{$_modx->config.emailfront}">{$_modx->config.emailfront}</a></dd>
+        </dl>
+      </div>
+      <div class="b-contacts__map">
+        <div class="b-map">{$_modx->config.map}</div>
+      </div>
+    </section>
+    <section class="b-requisites">
+      <h2>Реквизиты</h2>
+      <p>{$_modx->config.bank_main}</p>
+      <p>{$_modx->config.otdbank}</p>
+      <div class="l-row">
+        <div class="l-row__col l-row__col_5 l-row__col_sm_6 l-row__col_xs_12">Расчетный счет {$_modx->config.bynch} <br> В долларах {$_modx->config.dollch}</div>
+        <div class="l-row__col l-row__col_7 l-row__col_sm_6 l-row__col_xs_12">В евро {$_modx->config.euroch} <br> В рублях РФ  {$_modx->config.rfch}</div>
+      </div>
+    </section>
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

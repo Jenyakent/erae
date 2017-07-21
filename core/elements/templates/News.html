@@ -1,0 +1,31 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content">
+  <div class="l-container">
+    <h1 class="b-page-title">{$_modx->resource.pagetitle}</h1>
+    <section class="entries">
+      {$_modx->runSnippet('!pdoPage',[
+                 'limit' => 4,
+                 'parents' => 5,
+                 'element' => 'ms2GalleryResources',
+                 'includeThumbs' => '440x320',
+                 'tpl' => '@FILE chunks/news/NewsCard.html',
+                 'pageLimit' => 5,
+                 'sortby' => 'publishedon',
+                 'sortdir' => 'DESC',
+                 'tplPage' => '@INLINE <li class="b-pagination__item"><a href="/[[+href]]" class="b-pagination__link">[[+pageNo]]</a></li>',
+                 'tplPageWrapper' => '@INLINE <div class="b-pagination">[[+prev]]<ul class="b-pagination__list">[[+pages]]</ul>[[+next]]</div>',
+                 'tplPagePrev' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_prev"><a href="/[[+href]]" class="b-pagination__arrow-link b-pagination__arrow-link_prev">Назад</a></div>',
+                 'tplPageNext' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_next"><a href="/[[+href]]" class="b-pagination__arrow-link b-pagination__arrow-link_next">Дальше</a></div>',
+                 'tplPageActive' => '@INLINE <li class="b-pagination__item "><a href="/[[+href]]" class="b-pagination__link is-active">[[+pageNo]]</a></li>',
+                 'tplPageSkip' => '@INLINE <li class="b-pagination__item"><span class="b-pagination__dott">...</span></li>',
+                 'tplPagePrevEmpty' => '',
+                 'tplPageNextEmpty' => ''])}
+      
+      
+    </section>[[!+page.nav]]
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

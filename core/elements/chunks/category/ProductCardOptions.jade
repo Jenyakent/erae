@@ -1,0 +1,10 @@
+|{foreach $options as $option}
+<p> {$option.caption}:
+|{if $option.value is array}
+|{$option.value | join : ', '}
+|{else}
+|{$option.value}
+|{/if}
+</p>
+|{/foreach}
+

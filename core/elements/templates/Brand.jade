@@ -1,0 +1,23 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+section.b-content
+    .l-container
+        //breadcrumbs
+        ul.b-breadcrumbs
+            li.b-breadcrumbs__item
+                 a(href!="/{$_modx->makeUrl(2)}").b-breadcrumbs__link [[#2.pagetitle]]
+            li.b-breadcrumbs__item
+                 a(href!="/katalog#brands").b-breadcrumbs__link [[#3.pagetitle]]
+        | {$_modx->runSnippet('!pdoResources',[
+        |              'class' => 'msVendor',
+        |              'tpl' => '@FILE chunks/Brands/BrandPage.html',
+        |              'where' => '{"resource" : '~ $_modx->resource.id ~'}',
+        |              'sortby' => 'name'])}
+
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+|{/block}

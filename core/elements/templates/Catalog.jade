@@ -1,0 +1,34 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+
+
+section.b-content
+    .l-container
+        h1.b-page-title {$_modx->resource.pagetitle}
+        ul.b-production-list.
+            {$_modx->runSnippet('!pdoMenu',[
+            'parents' => 2,
+            'where' => '{"class_key":"msCategory"}',
+            'tplCategoryFolder' => '@INLINE <li [[+classes]]><h4><a href="/{$uri}">{$pagetitle}</a></h4><ul>[[+wrapper]]</ul></li>',
+            'tpl' => ' @INLINE <li><a href="/{$uri}">{$pagetitle}</a></li>',
+            'tplParentRow' => '@INLINE <li [[+classes]]><a href="/{$uri}">{$pagetitle}</a><ul>[[+wrapper]]</ul></li>',
+            'level' => 3,
+            'tplOuter' => '@INLINE [[+wrapper]]'])}
+
+
+        section.b-brands#brands(style="padding-top:50px")
+            h2.b-page-title Бренды
+            .b-brands__list.
+                {$_modx->runSnippet('pdoResources',[
+                'class' => 'msVendor',
+                'tpl' => '@FILE chunks/main/BrandCart.html',
+                'sortby' => 'name',
+                'limit' => 30,
+                'sortdir' => 'ASC'])}
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+|{/block}

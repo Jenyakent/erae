@@ -1,0 +1,13 @@
+
+<div class="b-catalog__item">
+  <section class="b-item">
+    <figure class="b-item__figure"><a href="/{$id | url}"><img src="[[+small]]" alt="" class="b-item__img"/></a></figure>
+    <h4 class="b-item__title"><a href="/{$id | url}" class="b-item__title-link">{$pagetitle}</a></h4>
+    <div class="b-item__description">
+      {$_modx->runSnippet('msProductOptions',[
+      'product' => $id,
+      'tpl' => '@FILE chunks/category/ProductCardOptions.html',
+      'groups' => 12])}
+    </div>
+  </section>
+</div>

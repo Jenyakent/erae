@@ -1,0 +1,33 @@
+
+.b-brand
+            section.b-brand__main
+                h1.b-page-title [[+name]]
+                h2.b-page-subtitle [[+country]]
+                .b-brand__main-content.l-row
+                    .b-brand__logo.l-row__col.l-row__col_3.l-row__col_push-9.l-row__col_xs_12.l-row__col_xs_push-0
+                        img(src='/[[+logo]]' alt='').b-brand__logo-img
+                    .b-brand__description.l-row__col.l-row__col_8.l-row__col_pull-3.l-row__col_sm_9.l-row__col_xs_12.l-row__col_xs_pull-0.
+                        [[+description]]
+
+
+            section.b-brand__production
+                h2 Продукция [[+name]]
+                | {$_modx->runSnippet('!mFilter2',['limit' => 20,
+                |                        'parents' => 2,
+                |                        'element' => 'msProducts',
+                |                        'where' => ['Vendor.id' => $id],
+                |                        'includeThumbs' => 'small',
+                |                        'pageLimit' => 5,
+                |                        'filters' => 'parent:categories',
+                |                        'suggestions' => 0,
+                |                        'tplOuter' => '@FILE chunks/Brands/BrandOuter.html'
+                |                        'tplFilter.outer.resource|parent' => '@FILE chunks/Brands/CatFilterOuter.html',
+                |                        'tplFilter.row.resource|parent' => '@FILE chunks/Brands/CatFilterRow.html',
+                |                        'tplPage' => '@INLINE <li class="b-pagination__item"><a href="/[[+href]]" class="b-pagination__link">[[+pageNo]]</a></li>',
+                |                        'tplPageWrapper' => '@INLINE <div class="b-pagination">[[+prev]]<ul class="b-pagination__list">[[+pages]]</ul>[[+next]]</div>',
+                |                        'tplPagePrev' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_prev"><a href="/[[+href]]" class="b-pagination__arrow-link b-pagination__arrow-link_prev">Назад</a></div>',
+                |                        'tplPageNext' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_next"><a href="/[[+href]]" class="b-pagination__arrow-link b-pagination__arrow-link_next">Дальше</a></div>',
+                |                        'tplPageActive' => '@INLINE <li class="b-pagination__item "><a href="/[[+href]]" class="b-pagination__link is-active">[[+pageNo]]</a></li>',
+                |                        'tplPageSkip' => '@INLINE <li class="b-pagination__item"><span class="b-pagination__dott">...</span></li>',
+                |                        'tplPagePrevEmpty' => '',
+                |                        'tplPageNextEmpty' => ''])}

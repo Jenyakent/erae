@@ -1,0 +1,33 @@
+{extends 'file:templates/Base.html'} {block 'content'}
+<section class="b-content">
+  <div class="l-container">
+    <section class="b-entry-page">
+      <section class="b-entry-page__content">
+        <section class="b-entry">
+          <div class="b-entry__date">[[*publishedon:date=`%d %b %Yг.`]]</div>
+          <h1>{$_modx->resource.pagetitle}</h1>{$_modx->resource.content}
+        </section>
+      </section>
+      <aside class="b-entry-page__aside">
+        <div class="b-add-request js-add-request-block">
+          <div class="b-add-request__content"><span class="b-add-request__icon"></span>
+            <div class="b-add-request__title">Если у вас остались вопросы, напишите нам</div>
+            <div class="b-add-request__text">Перезвоним и&nbsp;проконсультируем</div>
+          </div>
+          <div class="b-add-request__footer"><a href="#request-window" class="b-add-request__btn g-btn g-btn_small js-popup-link">Оставить заявку</a></div>
+        </div>
+      </aside>
+    </section>{$_modx->runSnippet('!pdoNeighbors', [
+    'parents' => $_modx->resource.id,
+    'loop' => 0,
+    'sortby' => 'publishedon',
+    'sortdir' => 'ASC',
+    'tplWrapper' => '@INLINE <div class="b-pagination b-pagination_entry">[[+prev]][[+next]]</div>',
+    'tplPrev' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_prev"><a href="/[[+uri]]" class="b-pagination__arrow-link b-pagination__arrow-link_prev">Предыдущая<span class="g-xs-hidden"> статья</span></a></div>',
+    'tplNext' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_next"><a href="/[[+uri]]" class="b-pagination__arrow-link b-pagination__arrow-link_next">Следующая<span class="g-xs-hidden"> статья</span></a></div>'])}
+  </div>
+</section>{if $_modx->resource.Seo_text != 0}
+<section class="b-text">
+  <div class="l-container">{$_modx->resource.Seo_info}</div>
+</section>{/if}
+{/block}

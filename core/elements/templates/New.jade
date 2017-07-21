@@ -1,0 +1,39 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+
+section.b-content
+  .l-container
+      section.b-entry-page
+        section.b-entry-page__content
+          section.b-entry
+            .b-entry__date [[*publishedon:date=`%d %b %Yг.`]]
+            h1 {$_modx->resource.pagetitle}
+            |{$_modx->resource.content}
+
+        aside.b-entry-page__aside
+          .b-add-request.js-add-request-block
+              .b-add-request__content
+                  span.b-add-request__icon
+                  .b-add-request__title Если у вас остались вопросы, напишите нам
+                  .b-add-request__text Перезвоним и&nbsp;проконсультируем
+              .b-add-request__footer
+                  a(href='#request-window').b-add-request__btn.g-btn.g-btn_small.js-popup-link Оставить заявку
+
+
+
+      | {$_modx->runSnippet('!pdoNeighbors', [
+      | 'parents' => $_modx->resource.id,
+      | 'loop' => 0,
+      | 'sortby' => 'publishedon',
+      | 'sortdir' => 'ASC',
+      | 'tplWrapper' => '@INLINE <div class="b-pagination b-pagination_entry">[[+prev]][[+next]]</div>',
+      | 'tplPrev' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_prev"><a href="/[[+uri]]" class="b-pagination__arrow-link b-pagination__arrow-link_prev">Предыдущая<span class="g-xs-hidden"> статья</span></a></div>',
+      | 'tplNext' => '@INLINE <div class="b-pagination__arrow b-pagination__arrow_next"><a href="/[[+uri]]" class="b-pagination__arrow-link b-pagination__arrow-link_next">Следующая<span class="g-xs-hidden"> статья</span></a></div>'])}
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+| {/block}
+

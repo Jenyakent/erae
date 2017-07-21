@@ -1,0 +1,15 @@
+.b-catalog__item
+    section.b-item
+      figure.b-item__figure
+        a(href='/{$id | url}')
+          img(src='[[+small]]' alt='').b-item__img
+      h4.b-item__title
+        a(href='/{$id | url}').b-item__title-link {$pagetitle}
+      .b-item__description.
+          {$_modx->runSnippet('msProductOptions',[
+          'product' => $id,
+          'tpl' => '@FILE chunks/category/ProductCardOptions.html',
+          'groups' => 12])}
+
+
+

@@ -1,0 +1,40 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+
+
+section.b-content
+    .l-container
+        h1.b-page-title {$_modx->resource.pagetitle}
+
+        section.b-contacts
+            .b-contacts__aside
+                dl.b-contacts__data
+                    dt.b-contacts__data-title Телефоны
+                    dd.b-contacts__data-description
+                        a(href!='tel:{$_modx->config.phone}') {$_modx->config.phone} <br> многоканальный
+                    dt.b-contacts__data-title Адрес
+                    dd.b-contacts__data-description {$_modx->config.adress}
+                    dt.b-contacts__data-title Почта
+                    dd.b-contacts__data-description
+                        a(href!='mailto:{$_modx->config.emailfront}') {$_modx->config.emailfront}
+            .b-contacts__map
+                .b-map
+                    |{$_modx->config.map}
+
+        section.b-requisites
+            h2 Реквизиты
+            p {$_modx->config.bank_main}
+            p {$_modx->config.otdbank}
+            .l-row
+                .l-row__col.l-row__col_5.l-row__col_sm_6.l-row__col_xs_12
+                    |Расчетный счет {$_modx->config.bynch} <br> В долларах {$_modx->config.dollch}
+                .l-row__col.l-row__col_7.l-row__col_sm_6.l-row__col_xs_12
+                    |В евро {$_modx->config.euroch} <br> В рублях РФ  {$_modx->config.rfch}
+
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+|{/block}

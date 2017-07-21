@@ -1,0 +1,57 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+
+section.b-content
+  .l-container
+      | {$_modx->runSnippet('pdoCrumbs',[
+      | 'from' => $_modx->resource.id,
+      | 'tpl' => '@INLINE <li class="b-breadcrumbs__item"><a href="/[[+link]]" class="b-breadcrumbs__link">[[+pagetitle]]</a></li>',
+      | 'tplWrapper' => '@INLINE <ul class="b-breadcrumbs">[[+output]]</ul>',
+      | 'showCurrent' => 0 ])}
+
+      section.b-product.js-product
+        header.b-product__header
+          .b-product__header-inner
+              h1.b-product__title {$_modx->resource.longtitle}
+              a(href!='/[[~[[+vendor.resource]]]]')
+                  span.b-product__logo-field
+                      img(src='/[[+vendor.logo]]' alt='').b-product__logo
+
+
+        aside.b-product__aside
+           .b-product__gallery.js-product-gallery-block.
+               {$_modx->runSnippet('!msGallery')}
+
+        section.b-product__content
+          section.b-product__section.b-product__section_docs
+              h3.b-product__section-title Технические документы
+              ul.b-files-list.
+                {$_modx->runSnippet('FileAttach',[
+                  'makeUrl' => 'true',
+                  'showSize' => 'true'
+                  'tpl' => 'DocItem'])}
+          section.b-product__btn-field
+            input(type="hidden", name="p-name", value!="{$_modx->resource.longtitle}")
+            input(type="hidden", name="p-id", value!="{$_modx->resource.id}")
+            input(type="hidden", name="p-img", value="[[+thumb]]")
+            input(type="hidden", name="p-url", value!="[[~[[++site_start]]]]{$_modx->resource.id | url}")
+            button(type="button").b-product__btn.g-btn.g-btn_large.js-product-btn Оставить заявку
+          section.b-product__section.b-product__section_specifications
+            h3.b-product__section-title Характеристики
+            ul.b-info-list.
+                {$_modx->runSnippet('msProductOptions',[
+                'tpl' => '@FILE chunks/Product/ProductOptions.html'])}
+          section.b-product__section.b-product__section_description
+            h3.b-product__section-title Описание
+            .b-product__description.js-product-description
+                <div class="b-product__description-mian readmore">
+                |{$_modx->resource.content}
+                </div>
+
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+|{/block}

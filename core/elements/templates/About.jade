@@ -1,0 +1,140 @@
+|{extends 'file:templates/Base.html'} {block 'content'}
+
+section.b-content
+    .l-container
+        section.b-about
+          section.b-about__section.b-about__section_1
+             h1 {$_modx->resource.pagetitle}
+             .l-row
+                 .l-row__col.l-row__col_8.l-row__col_sm_9.l-row__col_xs_12.
+                     {$_modx->resource.content}
+                 .l-row__col.l-row__col_3.l-row__col_offset-1.l-row__col_sm_offset-0.l-row__col_xs_12
+                     .b-about__description-title {$_modx->resource.introtext}
+          section.b-about__section.b-about__section_2
+            .l-row
+                .l-row__col.l-row__col_5.l-row__col_sm_6.l-row__col_xs_12
+                   h2  [[#32.pagetitle]]
+                   |[[#32.text1]]
+                   figure
+                     img(src='/[[#32.img1]]' alt='Наши сотрудники')
+                   |[[#32.text2]]
+                .l-row__col.l-row__col_7.l-row__col_sm_6.l-row__col_xs_12
+                   figure
+                      img(src='/[[#32.img2]]' alt='Наши сотрудники')
+                   .b-certificates.js-certificates
+                       .b-certificates__header
+                           h3.b-certificates__title Сертификаты сотрудников
+                       section.b-certificates__content.
+                               {$_modx->runSnippet('ms2GalleryResources',[
+                               'parents' => 32,
+                               'includeThumbs' => '360x270',
+                               'includeOriginal' => 1,
+                               'tplFirst' => '@FILE chunks/about/sertificatImg1.html'
+                               'tpl' => '@FILE chunks/about/sertificatImg.html',
+                               'sortby' => 'menuindex',
+                               'sortdir' => 'ASC'])}
+                       nav.b-certificates__nav
+                            ul.b-certificates__nav-list.
+                                   {$_modx->runSnippet('pdoResources',[
+                                   'parents' => 32,
+                                   'tplFirst' => '@INLINE <li class="b-certificates__nav-item"><a href="#" class="b-certificates__nav-link is-active js-certificates-link" data-certificate-id="{$id}">{$pagetitle}</a></li>',
+                                   'tpl' => '@INLINE <li class="b-certificates__nav-item"><a href="#" class="b-certificates__nav-link  js-certificates-link" data-certificate-id="{$id}">{$pagetitle}</a></li>',
+                                   'sortby' => 'menuindex',
+                                   'sortdir' => 'ASC'])}
+
+        section.b-about__section.b-about__section_3
+          .l-row
+              .l-row__col.l-row__col_5.l-row__col_sm_6.l-row__col_xs_12
+                  h2 [[#107.pagetitle]]
+                  |[[#107.text1]]
+              .l-row__col.l-row__col_6.l-row__col_offset-1.l-row__col_sm_offset-0.l-row__col_xs_12
+                  figure
+                    img(src='/[[#107.img1]]' alt='Отдел поставок')
+        section.b-about__section.b-about__section_4
+          .l-row
+              .l-row__col.l-row__col_9.l-row__col_sm_12
+                  h2 [[#49.pagetitle]]
+                  |[[#49.content]]
+          .b-gallery.js-gallery
+              .b-gallery__main-wrapper
+                  .b-gallery__main.js-gallery-main.
+                      {$_modx->runSnippet('ms2GalleryResources',[
+                      'parents' => 49,
+                      'includeThumbs' => '700x403',
+                      'tplWrapper' => '@INLINE [[+output]]',
+                      'tpl' => '@FILE chunks/about/GalleryRow.html'])}
+              .b-gallery__thumbs-wrapper
+                  .b-gallery__thumbs.js-gallery-thumbs.
+                      {$_modx->runSnippet('!ms2GalleryResources',[
+                      'parents' => 49,
+                      'includeThumbs' => '163x94',
+                      'tplWrapper' => '@INLINE [[+output]]',
+                      'tpl' => '@FILE chunks/about/ThumbRow.html'])}
+
+        .b-about__section.b-about__section_5
+            .l-row
+                .l-row__col.l-row__col_9.l-row__col_push-3.l-row__col_xs_push-0.l-row__col_xs_12
+                    h2 [[#108.pagetitle]]
+            .l-row
+                .l-row__col.l-row__col_3.l-row__col_xs_12
+                    .b-about__info.
+                       [[#108.text1]]
+                .l-row__col.l-row__col_9.l-row__col_xs_12.
+                    [[#108.text2]]
+        .b-about__section.b-about__section_6
+            .l-row
+                .l-row__coll-row__col_9.l-row__col_sm_12
+                    h2 [[#52.pagetitle]]
+                    |[[#52.content]]
+            .b-clients.
+                {$_modx->runSnippet('ms2GalleryResources',[
+                'parents' => 52,
+                'limit' => 30,
+                'includeThumbs' => '120x90',
+                'includeOriginal' => 1,
+                'tpl' => '@FILE chunks/about/ClientCard.html',
+                'sortby' => 'menuindex',
+                'sortdir' => 'ASC'])}
+
+section.b-reviews.js-reviews#pdopage
+    .l-container
+        h2.b-reviews__title Наши партнеры о&nbsp;работе с&nbsp;нами
+        .b-reviews__inner
+            .b-reviews__content.
+                {$_modx->runSnippet('!ms2GalleryResources',[
+                'parents' => 9,
+                'includeThumbs' => '234x334',
+                'includeOriginal' => 1,
+                'includeContent' => 1,
+                'tpl' => '@FILE chunks/reviewCard.html',
+                'sortby' => 'menuindex',
+                'sortdir' => 'ASC'])}
+
+            .b-reviews__aside
+                .b-reviews__aside-inner
+                    | <nav class="b-reviews__nav" id="pdopage">
+                    |     <ul class="b-reviews__nav-list rows" >
+                    |         [[!pdoPage?
+                    |             &parents=`9`
+                    |             &sortby=`menuindex`
+                    |             &sortdir=`ASC`
+                    |             &tplFirst=`@INLINE <li class="b-reviews__nav-item"><a href="#" class="b-reviews__nav-link is-active js-reviews-link" data-review-id="[[+id]]">[[+longtitle]]</a></li>`
+                    |             &tpl=`@INLINE <li class="b-reviews__nav-item"><a href="#" class="b-reviews__nav-link js-reviews-link" data-review-id="[[+id]]">[[+longtitle]]</a></li>`
+                    |             &limit=`5`
+                    |             &ajaxMode=`default`
+                    |             &tplPageWrapper=`@INLINE <div class="pagination"><ul class="pagination">[[+next]]</ul></div>`
+                    |             &tplPageNext=`@INLINE <a class="b-reviews__more-btn" href="/[[+href]]"><span class="b-reviews__more-btn-text">Еще отзывы</span></a>`
+                    |             &tplPageNextEmpty=`@INLINE <a class="b-reviews__more-btn last" href="/[[+href]]"><span class="b-reviews__more-btn-text">Еще отзывы</span></a>`
+                    |         ]]
+                    |     </ul>
+                    |     [[!+page.nav]]
+                    | </nav>
+
+| {if $_modx->resource.Seo_text != 0}
+section.b-text
+    .l-container
+        | {$_modx->resource.Seo_info}
+
+| {/if}
+|{/block}
+
